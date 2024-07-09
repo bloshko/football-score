@@ -68,28 +68,24 @@ describe("FootballScore", () => {
     const homeName3: TeamName = "Team E";
     const awayName3: TeamName = "Team F";
 
-    footballScore.startMatch(homeName1, awayName1, matchId1);
-    footballScore.startMatch(homeName2, awayName2, matchId2);
-    footballScore.startMatch(homeName3, awayName3, matchId3);
-
     const date = new Date(MOCK_DATE);
     vi.setSystemTime(date);
+    footballScore.startMatch(homeName1, awayName1, matchId1);
+
+    date.setMinutes(date.getMinutes() + 1);
+    vi.setSystemTime(date);
+    footballScore.startMatch(homeName2, awayName2, matchId2);
+
+    date.setMinutes(date.getMinutes() + 1);
+    vi.setSystemTime(date);
+    footballScore.startMatch(homeName3, awayName3, matchId3);
 
     const match1 = footballScore.liveMatches[matchId1];
     const match2 = footballScore.liveMatches[matchId2];
     const match3 = footballScore.liveMatches[matchId3];
 
     match1.updateScore(4, 0);
-
-    date.setMinutes(date.getMinutes() + 1);
-    vi.setSystemTime(date);
-
     match2.updateScore(0, 3);
-
-    date.setMinutes(date.getMinutes() + 1);
-    vi.setSystemTime(date);
-
-    // match3 is updated later than match2 by using vi.setSystemTime(date)
     match3.updateScore(3, 0);
 
     const scoreboard = footballScore.scoreboard;
@@ -129,7 +125,6 @@ describe("Match", () => {
       _awayScore: 0,
       _totalScore: 0,
       _createdDate: new Date(MOCK_DATE),
-      _lastUpdatedDate: new Date(MOCK_DATE),
     });
   });
 
@@ -143,10 +138,6 @@ describe("Match", () => {
 
     const match = new Match(homeName, awayName, matchId);
 
-    const updateDate = new Date(MOCK_DATE);
-    updateDate.setMinutes(updateDate.getMinutes() + 1);
-
-    vi.setSystemTime(updateDate);
     match.updateScore(1, 0);
 
     expect(match).toEqual({
@@ -157,13 +148,8 @@ describe("Match", () => {
       _awayScore: 0,
       _totalScore: 1,
       _createdDate: creationDate,
-      _lastUpdatedDate: updateDate,
     });
 
-    const newUpdateDate = new Date(MOCK_DATE);
-    newUpdateDate.setMinutes(newUpdateDate.getMinutes() + 2);
-
-    vi.setSystemTime(newUpdateDate);
     match.updateScore(1, 1);
 
     expect(match).toEqual({
@@ -174,7 +160,6 @@ describe("Match", () => {
       _awayScore: 1,
       _totalScore: 2,
       _createdDate: creationDate,
-      _lastUpdatedDate: newUpdateDate,
     });
   });
 });

@@ -57,9 +57,7 @@ export class FootballScore {
   get scoreboard() {
     return [...Object.values(this._liveMatches)].sort((matchA, matchB) => {
       if (matchA.score.totalScore === matchB.score.totalScore) {
-        return (
-          matchB.lastUpdatedDate.getTime() - matchA.lastUpdatedDate.getTime()
-        );
+        return matchB.createdDate.getTime() - matchA.createdDate.getTime();
       }
 
       return matchB.score.totalScore - matchA.score.totalScore;
@@ -72,7 +70,6 @@ export class FootballScore {
  */
 export class Match {
   private _createdDate: Date;
-  private _lastUpdatedDate: Date;
 
   private _homeName: TeamName;
   private _awayName: TeamName;
@@ -94,7 +91,6 @@ export class Match {
     this._awayName = awayName;
     this._id = id;
     this._createdDate = new Date();
-    this._lastUpdatedDate = this._createdDate;
   }
 
   /**
@@ -117,15 +113,6 @@ export class Match {
    */
   get createdDate() {
     return this._createdDate;
-  }
-
-  /**
-   * Retrieves the date when the match was last updated.
-   * @type {Date}
-   * @readonly
-   */
-  get lastUpdatedDate() {
-    return this._lastUpdatedDate;
   }
 
   /**
@@ -183,6 +170,5 @@ export class Match {
     this._awayScore = newAwayScore;
 
     this._totalScore = newHomeScore + newAwayScore;
-    this._lastUpdatedDate = new Date();
   }
 }

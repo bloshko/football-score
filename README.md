@@ -15,28 +15,41 @@ This project is a Football Score Management System built in TypeScript, designed
    cd football-score
    ```
 2. Install dependencies:
-   with npm:
+
+   with npm
+
    ```bash
    npm install
    ```
-   with pnpm:
+
+   with pnpm
+
    ```bash
    pnpm install
    ```
-   with yarn:
+
+   with yarn
+
    ```bash
    yarn install
    ```
+
 3. Run an example:
-   with npm:
+
+   with npm
+
    ```bash
    npm start
    ```
-   with pnpm:
+
+   with pnpm
+
    ```bash
    pnpm start
    ```
-   with yarn:
+
+   with yarn
+
    ```bash
    yarn start
    ```
