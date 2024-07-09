@@ -53,3 +53,11 @@ This project is a Football Score Management System built in TypeScript, designed
    ```bash
    yarn start
    ```
+
+## Assumptions
+
+I assumed that it's user's responsibility:
+
+- to check that scores can't be negative, so I don't add a `throw` in `Match.updateScore`
+- to check that there are no matches with identical home/away names
+- to generate unique IDs for each of the match
