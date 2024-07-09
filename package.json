@@ -1,0 +1,20 @@
+{
+  "name": "football-score",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx ./src/main.ts",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "tsx": "^4.16.2",
+    "vitest": "^2.0.1"
+  }
+}
